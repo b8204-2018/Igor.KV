@@ -11,5 +11,5 @@ add_subdirectory(googletest)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(main main.cpp classes.h)
+add_executable(main main.cpp classes.h Sorts.cpp)
 add_executable(Test tests.cpp classes.h)
