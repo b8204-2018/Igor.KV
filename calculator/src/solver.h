@@ -9,9 +9,8 @@
 #include<vector>
 
 
-void reader(const char *file,short *code, char *expression);
+void reader(const char *file,short &code, char *expression);
 void printer(std::vector<double>);
-void Error(int x);
 
 class Parser{
         public:
@@ -29,43 +28,43 @@ public:
 };
 
 
-class operation{
+class Operation{
 public:
     virtual short get_Type() = 0;
     virtual std::vector<double> result(std::string &equation) = 0;
 };
 
-class ordinary : public operation {
+class Ordinary : public Operation {
 public:
     std::vector<double> result(std::string &s);
     virtual double calculate(std::vector<double> elements) = 0;
 };
 
-class Add :public ordinary{
+class Add :public Ordinary{
 public:
     short get_Type();
     double calculate(std::vector<double > elements);
 };
 
-class Sub :public ordinary{
+class Sub :public Ordinary{
 public:
     short get_Type();
     double calculate(std::vector<double> elements);
 };
 
-class Mul :public ordinary{
+class Mul :public Ordinary{
 public:
     short get_Type();
     double calculate(std::vector<double> elements);
 };
 
-class Div :public ordinary{
+class Div :public Ordinary{
 public:
     short get_Type();
     double calculate(std::vector<double> elements);
 };
 
-class Quadratic :public operation{
+class Quadratic :public Operation{
 
     short get_Type();
     std::vector<double> result(std::string &equation);
@@ -77,9 +76,9 @@ class Quadratic :public operation{
 
 
 class Solver{
-    std::vector<operation*>op ;
+    std::vector<Operation*>op ;
 public:
-    void add(operation* operation1);
+    void add(Operation* operation1);
     std::vector<double> solve(short type,std::string error);
 };
 
